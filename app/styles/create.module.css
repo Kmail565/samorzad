@@ -1,0 +1,22 @@
+
+.wpisywanie_maila {
+        color: #a80404;
+
+}
+
+.input_mail{
+        height: 50px;
+        color: blueviolet;
+        border-radius: 2px;
+        border-style: solid;
+
+}
+
+.input_mail::placeholder{
+
+        color: blueviolet;
+}
+
+.register_button{
+        cursor: pointer;
+}
