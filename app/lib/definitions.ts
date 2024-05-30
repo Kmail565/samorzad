@@ -9,6 +9,7 @@ export type User = {
     permission: string;
     image_url: string;
     date: string;
+    registered?:boolean;
 };
 
 export type SessionData = {

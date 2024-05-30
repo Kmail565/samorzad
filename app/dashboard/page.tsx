@@ -1,4 +1,3 @@
-import LogoutForm from "../ui/forms/logout-form";
 import {getSession} from "../lib/actions";
 
 export default async function Home()

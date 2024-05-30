@@ -5,7 +5,8 @@ export default function RegisterPage()
     return(
         <>
             <h1>Register</h1>
-            <Link href={"/register/1"}> Link to register </Link>
+            <p>Wrong Link</p>
+            <Link href={"/"}> Homepage </Link>
         </>
     )
 }

@@ -23,7 +23,6 @@ async function getUser(email: string): Promise<User | undefined> {
         const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
         return user.rows[0];
     } catch (error) {
-        console.error('Database Error:', error);
         throw new Error('Failed to fetch user.');
     }
 }
@@ -35,13 +34,13 @@ export async function login(prevState: {error: undefined | string}, formData: Fo
     const parsedEmail = z.string().email().safeParse(formData.get("email"));
     const parsedPassword = z.string().min(6).safeParse(formData.get("password"));
 
-    if(parsedEmail && parsedPassword)
+    if(parsedEmail.success && parsedPassword.success)
     {
         const email = parsedEmail.data as string;
         const password = parsedPassword.data as string;
-
         const user = await getUser(email);
         if (!user) return {error: "Invalid email or password"};
+        if (!user.registered) return {error: "First complete registration"};
 
         const passwordsMatch = await bcrypt.compare(password,user.password);
         if (passwordsMatch)
@@ -62,12 +61,3 @@ export async function logout()
     redirect("/login");
 }
 
-export async function fetchUsers() {
-    try {
-        const users = await sql<User>`SELECT * FROM users ORDER BY users.date DESC LIMIT 10`;
-        return users.rows;
-    } catch (error) {
-        console.error('Database Error:', error);
-        throw new Error('Failed to fetch users.');
-    }
-}
