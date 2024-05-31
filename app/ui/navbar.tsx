@@ -14,7 +14,7 @@ export default function Navbar2() {
                 <button className={styles.tabs}><Nav.Link href="/sports">Sporty</Nav.Link></button>
                 <button className={styles.tabs}><Nav.Link href="/events">Wydarzenia</Nav.Link></button>
                 <button className={styles.tabs}><Nav.Link href="/about">About</Nav.Link></button>
-                <button className={styles.tabs}><Nav.Link href="/login">Login</Nav.Link></button>
+                <button className={styles.tabs}><Nav.Link href="/login">Zaloguj się</Nav.Link></button>
             </Container>
         </Navbar>
     );
