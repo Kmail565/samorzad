@@ -1,14 +1,15 @@
-import { SessionOptions } from "iron-session";
+import {SessionOptions} from "iron-session";
 
 export type User = {
-    id: string;
-    name: string;
-    surname: string;
-    email: string;
-    password: string;
-    permission: string;
-    image_url: string;
-    date: string;
+    id: string,
+    name: string,
+    surname: string,
+    email: string,
+    password: string,
+    permission: string,
+    image_url: string,
+    date: string,
+    registered?: boolean,
 };
 
 export type SessionData = {
@@ -20,7 +21,7 @@ export const defaultSession: SessionData = {
     isLoggedIn: false,
 }
 
-export const sessionOptions: SessionOptions ={
+export const sessionOptions: SessionOptions = {
     password: process.env.SECRET_KEY!,
     cookieName: "user-session",
     cookieOptions: {
