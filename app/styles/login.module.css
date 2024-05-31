@@ -57,6 +57,7 @@
     border: none;
     border-radius: 5px;
     float: right;
+    transition: opacity 0.2s;
 }
 
 .forgot_pass{
