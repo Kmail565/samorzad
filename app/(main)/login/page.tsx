@@ -10,7 +10,6 @@ export default async function Login()
 
     return (
         <main>
-            <h1>Login</h1>
             <LoginForm/>
         </main>
     );

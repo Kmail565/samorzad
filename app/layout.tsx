@@ -1,4 +1,5 @@
-import '@/app/styles/global.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export const metadata = {
   title: 'Next.js'
 }

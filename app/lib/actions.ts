@@ -2,7 +2,6 @@ import {getIronSession} from "iron-session";
 import {defaultSession, SessionData, sessionOptions, User} from "@/app/lib/definitions";
 import {cookies} from "next/headers";
 import {sql} from "@vercel/postgres";
-import {redirect} from "next/navigation";
 
 export async function getSession() {
     const session = await getIronSession<SessionData>(cookies(), sessionOptions);

@@ -38,7 +38,7 @@ export default async function DashboardNavbar()
                                     >
                                         <button id={isActive ? styles.navbar_button_active : ""}>
                                             <LinkIcon className={styles.navbar_icon}/>
-                                            <p> {link.name} </p>
+                                            <p className={styles.navbar_text}> {link.name} </p>
                                         </button>
                                     </Link>
                                 }
@@ -50,7 +50,7 @@ export default async function DashboardNavbar()
                     <form action={logout}>
                         <button>
                             <PowerIcon className={styles.logout_icon}/>
-                            <p>Wyloguj się</p>
+                            <p className={styles.logout_text}>Wyloguj się</p>
                         </button>
                     </form>
                 </div>
