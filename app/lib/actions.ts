@@ -41,7 +41,7 @@ export async function login(prevState: {error: undefined | string}, formData: Fo
         const password = parsedPassword.data as string;
 
         const user = await getUser(email);
-        if (!user) return {error: "Invalid email or password"};
+        if (!user) return {error: "*Invalid email or password*"};
 
         const passwordsMatch = await bcrypt.compare(password,user.password);
         if (passwordsMatch)
