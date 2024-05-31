@@ -6,7 +6,7 @@ import styles from "@/app/styles/navbar.module.css";
 
 export default function Navbar2() {
     return(
-        <Navbar expand="lg" className="bg-body-tertiary" className={styles.navbar}>
+        <Navbar expand="lg" className={styles.navbar}>
             <Container>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <button className={styles.tabs}><Nav.Link href="/">Strona główna</Nav.Link></button>
