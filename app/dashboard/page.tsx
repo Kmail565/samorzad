@@ -1,4 +1,4 @@
-import {getSession} from "../lib/actions";
+import {getSession} from "@/app/lib/actions";
 
 export default async function Home()
 {

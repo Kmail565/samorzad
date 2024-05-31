@@ -1,4 +1,4 @@
-import {logout} from "../../lib/actions";
+import {logout} from "../../lib/login";
 
 export default function LogoutForm()
 {

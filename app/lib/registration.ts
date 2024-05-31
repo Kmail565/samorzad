@@ -4,6 +4,8 @@ import {sql} from "@vercel/postgres";
 import {User} from "./definitions";
 import {redirect} from "next/navigation";
 import bcrypt from "bcrypt";
+import {login, logout} from "./login";
+import {getSession} from "@/app/lib/actions";
 
 const defaultUser: {name:string, surname: string, password: string, image_url: string} = {
     name: "BRAK",
@@ -30,7 +32,7 @@ export async function sendEmail(email:string)
     const user = await emailGetUser(email);
     try {
         const msg = {
-            frm: 'strona.staszic.xiv.samorzad@gmail.com',
+            from: 'strona.staszic.xiv.samorzad@gmail.com',
             to: email,
             subject: 'Account registration',
             text: 'Account registration link: http://localhost:3000/register/'+user?.id
@@ -126,5 +128,6 @@ export async function register(prevState: {error: undefined | string}, formData:
         console.log(error)
         return { error: 'Database Error: Failed to Register' };
     }
+    logout();
     redirect("/login");
 }

@@ -1,7 +1,7 @@
-import Navbar from "../ui/navbar";
-import {getSession} from "../lib/actions";
 import {redirect} from "next/navigation";
-import DashboardNavbar from "../ui/dashboard-navbar";
+import {getSession} from "@/app/lib/actions";
+import styles from "@/app/styles/dashboard/main.module.scss"
+import DashboardNavbar from "@/app/ui/dashboard-navbar";
 
 export default async function Layout({
     children,
@@ -13,9 +13,9 @@ export default async function Layout({
     if(!session.isLoggedIn) redirect("/login");
 
     return (
-        <>
+        <body className={styles.body}>
             <DashboardNavbar/>
             {children}
-        </>
+        </body>
     );
 }
