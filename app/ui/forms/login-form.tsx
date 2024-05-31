@@ -8,7 +8,8 @@ export default function LoginForm()
     const [state, formAction] = useFormState<any,FormData>(login,undefined);
     return (
         <div>
-            <form action={formAction}  className={styles.parent}>
+            <div className={styles.parent}></div>
+            <form action={formAction}>
                 <div className={styles.child}>
                     <h1 className={styles.h1}>Samorząd Uczniowski XIV LO im. St. Staszica w Warszawie</h1>
                     <input className={styles.login_data + ' ' + styles.email}

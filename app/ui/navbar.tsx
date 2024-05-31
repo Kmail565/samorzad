@@ -1,31 +1,21 @@
 'use client';
-import Link from 'next/link';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import styles from "@/app/styles/navbar.module.css";
 
-const links = [
-    {name: "Home", href: '/'},
-    {name: "Blog", href: '/blog'},
-    {name: "Sports", href: '/sports'},
-    {name: "Events", href: '/events'},
-    {name: "About", href: '/about'},
-    {name: "Dashboard", href: '/dashboard'},
-    {name: "Login", href: '/login'},
-]
-
-export default function Navbar() {
+export default function Navbar2() {
     return(
-      <>
-          <div>
-              {links.map((link) => {
-                  return (
-                      <Link
-                          key={link.href}
-                          href={link.href}
-                      >
-                          {link.name}
-                      </Link>
-                  );
-              })}
-          </div>
-      </>
+        <Navbar expand="lg" className="bg-body-tertiary" className={styles.navbar}>
+            <Container>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <button className={styles.tabs}><Nav.Link href="/">Strona główna</Nav.Link></button>
+                <button className={styles.tabs}><Nav.Link href="/blog">Aktualności</Nav.Link></button>
+                <button className={styles.tabs}><Nav.Link href="/sports">Sporty</Nav.Link></button>
+                <button className={styles.tabs}><Nav.Link href="/events">Wydarzenia</Nav.Link></button>
+                <button className={styles.tabs}><Nav.Link href="/about">About</Nav.Link></button>
+                <button className={styles.tabs}><Nav.Link href="/login">Login</Nav.Link></button>
+            </Container>
+        </Navbar>
     );
 }
