@@ -1,9 +1,11 @@
 'use server'
-import {Resend} from "resend";
 import {z} from "zod";
 import {sql} from "@vercel/postgres";
 import {User} from "./definitions";
 import {redirect} from "next/navigation";
+import bcrypt from "bcrypt";
+import {login, logout} from "./login";
+import {getSession} from "@/app/lib/actions";
 
 const defaultUser: {name:string, surname: string, password: string, image_url: string} = {
     name: "BRAK",
@@ -12,7 +14,7 @@ const defaultUser: {name:string, surname: string, password: string, image_url: s
     image_url: "/default.jpg"
 }
 
-async function getUser(email: string): Promise<User | undefined> {
+async function emailGetUser(email: string): Promise<User | undefined> {
     try {
         const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
         return user.rows[0];
@@ -24,47 +26,108 @@ async function getUser(email: string): Promise<User | undefined> {
 
 export async function sendEmail(email:string)
 {
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const user = await getUser(email);
-    console.log(email, user?.id);
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+    const user = await emailGetUser(email);
     try {
-        console.log("Sending email...");
-        const { data } = await resend.emails.send({
-            from: 'example@samorzad.vercel',
+        const msg = {
+            from: 'strona.staszic.xiv.samorzad@gmail.com',
             to: email,
             subject: 'Account registration',
-            text: 'http://localhost:3000/registration/'+user?.id
-        })
+            text: 'Account registration link: http://localhost:3000/register/'+user?.id
+        }
+        sgMail.send(msg);
     }catch (error)
     {
-        console.log(error);
-        console.error('Error:', error);
         throw new Error('Failed to send an email.');
     }
-    console.log("Email send");
 }
 
-export async function createAccount(formData: FormData)
+export async function createAccount(prevState: {error: undefined | string}, formData: FormData)
 {
     const parsedEmail = z.string().email().safeParse(formData.get("email"));
     const parsedPermission = z.enum(['MODERATOR']).safeParse(formData.get("permission"));
 
-    console.log(parsedEmail, parsedPermission);
-    if(!parsedEmail || !parsedPermission)
+    if(!parsedEmail.success || !parsedPermission.success)
     {
-        return {message: 'Missing Fields. Failed to Create Invoice.',};
+        return {error: 'Missing Fields. Failed to Create Account.',};
     }
 
     const email = parsedEmail.data as string;
     const permission = parsedPermission.data;
     const date = new Date().toISOString().split('T')[0];
-    /*
+
+    const user = await emailGetUser(email);
+    if(user) return {error: 'Email already in use',};
+
     await sql`
                 INSERT INTO users (name, surname, email, password, permission, image_url, date)
                 VALUES (${defaultUser.name}, ${defaultUser.surname}, ${email}, ${defaultUser.password}, 
                 ${permission}, ${defaultUser.image_url}, ${date});
     `;
-     */
+
     sendEmail(email);
     redirect("/dashboard/users");
+}
+
+async function idGetUser(id: string): Promise<User | undefined>
+{
+    try {
+        const user = await sql<User>`SELECT * FROM users WHERE id=${id}`;
+        return user.rows[0];
+    } catch (error) {
+        // console.error('Database Error:', error);
+        // throw new Error('Failed to fetch user.');
+    }
+}
+
+export async function checkId(id:string): Promise<Boolean>
+{
+    const parsedId = z.string().safeParse(id);
+    if(!parsedId.success) return false;
+    const user = await idGetUser(parsedId.data);
+    if(!user) return false;
+    if(user.registered) return false;
+    return true;
+}
+
+export async function register(prevState: {error: undefined | string}, formData: FormData)
+{
+    const parsedId = z.string().safeParse(formData.get("id"));
+    const parsedName = z.string().safeParse(formData.get("name"));
+    const parsedSurname = z.string().safeParse(formData.get("surname"));
+    const parsedPassword = z.string().safeParse(formData.get("password"));
+    const parsedRepeatedPassword = z.string().safeParse(formData.get("repeated_password"));
+
+    if(!parsedName.success || !parsedSurname.success || !parsedPassword.success || !parsedRepeatedPassword.success)
+    {
+        return {error: "Invalid data"};
+    }
+
+    const id = parsedId.data;
+    const name = parsedName.data;
+    const surname = parsedSurname.data;
+    const password = parsedPassword.data;
+    const repeatedPassword = parsedRepeatedPassword.data;
+
+    if(password != repeatedPassword)
+    {
+        return {error: "Passwords are not the same"};
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    try {
+        await sql`
+          UPDATE users
+          SET name = ${name}, surname = ${surname}, password = ${hashedPassword}, registered = true
+          WHERE id = ${id}
+        `;
+    } catch (error) {
+        console.log(error)
+        return { error: 'Database Error: Failed to Register' };
+    }
+    logout();
+    redirect("/login");
 }

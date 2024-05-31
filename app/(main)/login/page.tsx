@@ -1,6 +1,6 @@
 import LoginForm from "../../ui/forms/login-form";
-import {getSession} from "../../lib/actions";
 import {redirect} from "next/navigation";
+import {getSession} from "@/app/lib/actions";
 
 export default async function Login()
 {
