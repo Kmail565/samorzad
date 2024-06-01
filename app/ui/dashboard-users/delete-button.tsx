@@ -3,7 +3,7 @@ import {User} from "@/app/lib/definitions";
 import {useFormState} from "react-dom";
 import {deleteUser} from "@/app/lib/edit";
 
-export default async function DeleteButton({user}: { user: User })
+export default function DeleteButton({user}: { user: User })
 {
     const [state, formAction] = useFormState<any, FormData>(deleteUser, undefined);
 
