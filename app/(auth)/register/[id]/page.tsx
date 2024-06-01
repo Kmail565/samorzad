@@ -11,7 +11,7 @@ type Props = {
 export default async function Register({params} : Props)
 {
     const correctId = await checkId(params.id);
-    console.log(correctId);
+    // console.log(correctId);
     if(!correctId) redirect("/register");
     return(
         <>

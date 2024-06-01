@@ -6,8 +6,10 @@ export default async function Home()
 
     return(
         <>
-            <h1>Dashboard</h1>
-            <p>Witaj {session.user?.name} {session.user?.surname}</p>
+            <div>
+                <h1>Dashboard</h1>
+                <p>Witaj {session.user?.name} {session.user?.surname}</p>
+            </div>
         </>
     )
 }
