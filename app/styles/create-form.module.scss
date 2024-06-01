@@ -1,0 +1,78 @@
+@import "dashboard/variables";
+
+.button{
+    margin-left: 57px;
+    height: 50px;
+    width: 250px;
+    color: white;
+    background-color: #141f2b;
+    border: none;
+    border-radius: 5px;
+    float: left;
+    transition: opacity 0.2s;
+}
+
+.h1{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.email{
+    margin-bottom: 40px;
+    margin-top: 10px;
+    width:250px;
+    height:50px;
+    border-style: solid;
+    border-color: #141f2b;
+    border-width: 2.5px;
+    border-radius: 5px;
+}
+
+.permission{
+    border-style: solid;
+    border-color: #141f2b;
+    border-width: 2.5px;
+    border-radius: 5px;
+    width: 200px;
+    height: 50px;
+    margin-right: 20px;
+    margin-left: 53px;
+
+}
+
+.parent{
+    background-image: url("staszic.jpg");
+    filter: blur(7px);
+    text-align: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.child{
+    margin-left: ($sidebar-width)/2;
+    background: white;
+    width: 634px;
+    height: 275px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;
+    border: none;
+}
+
+.child2{
+    margin-left: ($sidebar-width)/2;
+    background: white;
+    width: 634px;
+    height: 170px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;
+    border: none;
+}
