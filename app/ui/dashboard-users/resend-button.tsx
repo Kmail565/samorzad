@@ -1,6 +1,7 @@
 'use client'
 import {User} from "next-auth";
-import {sendEmail} from "../../lib/registration";
+import {createAccount, sendEmail} from "../../lib/registration";
+import {useFormState} from "react-dom";
 import styles from "@/app/styles/user-table.module.scss";
 
 export default function ResendButton({user}: { user: User })

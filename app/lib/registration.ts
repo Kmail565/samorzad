@@ -4,14 +4,21 @@ import {sql} from "@vercel/postgres";
 import {User} from "./definitions";
 import {redirect} from "next/navigation";
 import bcrypt from "bcrypt";
-import {login, logout} from "./login";
-import {getSession} from "@/app/lib/actions";
+import {logout} from "./login";
+import {unstable_noStore} from "next/cache";
+import sgMail from "@sendgrid/mail";
 
 const defaultUser: {name:string, surname: string, password: string, image_url: string} = {
     name: "BRAK",
     surname: "BRAK",
     password: "BRAK",
     image_url: "/default.jpg"
+}
+
+const msgTemplate = {
+    from: 'strona.staszic.xiv.samorzad@gmail.com',
+    subject: 'Account registration',
+    text: 'Account registration link: http://localhost:3000/register/'
 }
 
 async function emailGetUser(email: string): Promise<User | undefined> {
@@ -24,24 +31,26 @@ async function emailGetUser(email: string): Promise<User | undefined> {
     }
 }
 
-export async function sendEmail(email:string)
-{
+export async function sendEmail(email: string) {
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
     const user = await emailGetUser(email);
-    try {
-        const msg = {
-            from: 'strona.staszic.xiv.samorzad@gmail.com',
-            to: email,
-            subject: 'Account registration',
-            text: 'Account registration link: http://localhost:3000/register/'+user?.id
-        }
-        sgMail.send(msg);
-    }catch (error)
-    {
-        throw new Error('Failed to send an email.');
+
+    const msg = {
+        from: msgTemplate.from,
+        to: email,
+        subject: msgTemplate.subject,
+        text: msgTemplate.text + user?.id,
     }
+
+    sgMail.send(msg)
+    .then(() => {
+        console.log('Email sent')
+    })
+    .catch((error: any) => {
+        console.error(error);
+    })
 }
 
 export async function createAccount(prevState: {error: undefined | string}, formData: FormData)
@@ -58,16 +67,34 @@ export async function createAccount(prevState: {error: undefined | string}, form
     const permission = parsedPermission.data;
     const date = new Date().toISOString().split('T')[0];
 
-    const user = await emailGetUser(email);
-    if(user) return {error: 'Email already in use',};
+    const isUser = await emailGetUser(email);
+    if(isUser) return {error: 'Email already in use',};
 
-    await sql`
+    try {
+        await sql`
                 INSERT INTO users (name, surname, email, password, permission, image_url, date)
                 VALUES (${defaultUser.name}, ${defaultUser.surname}, ${email}, ${defaultUser.password}, 
                 ${permission}, ${defaultUser.image_url}, ${date});
-    `;
+        `;
+    }catch(error)
+    {
+        return {error: 'Database error',};
+    }
+
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+    const user = await emailGetUser(email);
+
+    const msg = {
+        from: msgTemplate.from,
+        to: email,
+        subject: msgTemplate.subject,
+        text: msgTemplate.text + user?.id,
+    }
 
     sendEmail(email);
+
     redirect("/dashboard/users");
 }
 
@@ -84,6 +111,7 @@ async function idGetUser(id: string): Promise<User | undefined>
 
 export async function checkId(id:string): Promise<Boolean>
 {
+    unstable_noStore();
     const parsedId = z.string().safeParse(id);
     if(!parsedId.success) return false;
     const user = await idGetUser(parsedId.data);
@@ -95,8 +123,8 @@ export async function checkId(id:string): Promise<Boolean>
 export async function register(prevState: {error: undefined | string}, formData: FormData)
 {
     const parsedId = z.string().safeParse(formData.get("id"));
-    const parsedName = z.string().safeParse(formData.get("name"));
-    const parsedSurname = z.string().safeParse(formData.get("surname"));
+    const parsedName = z.string().min(1).safeParse(formData.get("name"));
+    const parsedSurname = z.string().min(1).safeParse(formData.get("surname"));
     const parsedPassword = z.string().safeParse(formData.get("password"));
     const parsedRepeatedPassword = z.string().safeParse(formData.get("repeated_password"));
 
@@ -125,7 +153,6 @@ export async function register(prevState: {error: undefined | string}, formData:
           WHERE id = ${id}
         `;
     } catch (error) {
-        console.log(error)
         return { error: 'Database Error: Failed to Register' };
     }
     logout();
