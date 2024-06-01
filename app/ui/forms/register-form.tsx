@@ -15,7 +15,7 @@ export default function RegisterForm({params} : Props)
     const pending = useFormStatus().pending;
     return (
         <div>
-            <div className={styles.parent}></div>
+            <div className={styles.bg}></div>
             <form action={formAction}>
                 <div className={styles.child2}>
                     <h1 className={styles.h1}>Samorząd Uczniowski XIV LO im. St. Staszica w Warszawie</h1>
@@ -52,8 +52,8 @@ export default function RegisterForm({params} : Props)
                         Register
                     </button>
                     {state?.error &&
-                        <p>
-                            {state.error}
+                        <p id={styles.error}>
+                            *{state.error}*
                         </p>
                     }
                 </div>

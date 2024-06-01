@@ -2,6 +2,7 @@
 import {User} from "@/app/lib/definitions";
 import {useFormState} from "react-dom";
 import {deleteUser} from "@/app/lib/edit";
+import styles from "@/app/styles/edit-user-form.module.css";
 
 export default function DeleteButton({user}: { user: User })
 {
@@ -14,8 +15,8 @@ export default function DeleteButton({user}: { user: User })
                 name="id"
                 value={user.id}
             />
-            <button>
-                Delete Account
+            <button className={styles.button2}>
+                Usuń konto
             </button>
             {state?.error &&
                 <p>
