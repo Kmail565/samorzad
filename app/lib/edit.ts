@@ -107,7 +107,22 @@ export async function edit(prevState: {error: undefined | string}, formData: For
 
 export async function deleteUser(prevState: {error: undefined | string}, formData: FormData)
 {
+    const parsedId = z.string().safeParse(formData.get("id"));
+    const id = parsedId.data as string;
 
+    const user = await idGetUser(id);
+    if(!user) return { error: 'Database Error: Failed to delete User' };
+
+    try {
+        await sql`
+              DELETE FROM users
+              WHERE id = ${user.id}
+            `;
+    } catch (error) {
+        return { error: 'Database Error: Failed to delete User' };
+    }
+
+    redirect("/dashboard/users");
 }
 
 /*

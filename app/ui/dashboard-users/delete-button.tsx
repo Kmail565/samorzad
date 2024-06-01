@@ -1,3 +1,4 @@
+'use client'
 import {User} from "@/app/lib/definitions";
 import {useFormState} from "react-dom";
 import {deleteUser} from "@/app/lib/edit";

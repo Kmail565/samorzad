@@ -16,7 +16,7 @@ const defaultUser: {name:string, surname: string, password: string, image_url: s
 }
 
 const msgTemplate = {
-    from: 'strona.staszic.xiv.samorzad@dupa.com',
+    from: 'strona.staszic.xiv.samorzad@gmail.com',
     subject: 'Account registration',
     text: 'Account registration link: http://localhost:3000/register/'
 }
@@ -123,8 +123,8 @@ export async function checkId(id:string): Promise<Boolean>
 export async function register(prevState: {error: undefined | string}, formData: FormData)
 {
     const parsedId = z.string().safeParse(formData.get("id"));
-    const parsedName = z.string().safeParse(formData.get("name"));
-    const parsedSurname = z.string().safeParse(formData.get("surname"));
+    const parsedName = z.string().min(1).safeParse(formData.get("name"));
+    const parsedSurname = z.string().min(1).safeParse(formData.get("surname"));
     const parsedPassword = z.string().safeParse(formData.get("password"));
     const parsedRepeatedPassword = z.string().safeParse(formData.get("repeated_password"));
 
