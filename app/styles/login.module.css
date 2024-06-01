@@ -23,12 +23,19 @@
 }
 
 .parent{
+    height: 100%;
+    width: 100%;
+    margin-top: 67px;
+}
+
+.bg{
     background-image: url("staszic.jpg");
     filter: blur(7px);
     text-align: center;
-    height: 1500px;
+    height: 100vh;
+    width: 100vw;
     background-size: cover;
-    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .child{
@@ -44,9 +51,48 @@
     border: none;
 }
 
+.child2{
+    background: white;
+    width: 634px;
+    height: 560px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;
+    border: none;
+}
+
+.child3{
+    background: white;
+    width: 634px;
+    height: 180px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;
+    border: none;
+}
+
 .button{
-    margin-top: 45px;
-    margin-right: 34px;
+    margin-top: 35px;
+    margin-right: 42px;
+    height: 40px;
+    width: 200px;
+    color: white;
+    background-color: #141f2b;
+    border: none;
+    border-radius: 5px;
+    float: right;
+    transition: opacity 0.2s;
+}
+
+.button2{
+    margin-top: 15px;
+    margin-right: 42px;
     height: 40px;
     width: 200px;
     color: white;
@@ -78,3 +124,7 @@
     color: red;
 }
 
+.zly_link{
+    margin-top: 20px;
+    color: red;
+}

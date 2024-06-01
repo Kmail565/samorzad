@@ -5,7 +5,6 @@ export default function RegisterPage()
 {
     return(
         <>
-            <h1>Create</h1>
             <CreateForm/>
         </>
     )

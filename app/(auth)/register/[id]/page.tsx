@@ -15,7 +15,6 @@ export default async function Register({params} : Props)
     if(!correctId) redirect("/register");
     return(
         <>
-            <h1>Register</h1>
             <RegisterForm params={params}/>
         </>
     )

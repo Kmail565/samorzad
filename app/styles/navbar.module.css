@@ -3,6 +3,11 @@
     border-style: solid;
     border-width: 2px;
     border-color: #141f2b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .tabs{
