@@ -8,7 +8,7 @@ import {LinkIcon} from "@heroicons/react/16/solid";
 const links = [
     {name: "Strona główna", href: "/dashboard", icon:HomeIcon, access: [] },
     {name: "Zarządaj kontami", href: '/dashboard/users', icon:UsersIcon, access: ['ADMINISTRATOR']},
-    {name: "Edytuj aktualności", href: '/dashboard/blog', icon:AdjustmentsHorizontalIcon, access: ['ADMINISTRATOR','MODERATOR']},
+    {name: "Edytuj aktualności", href: '/dashboard/news', icon:AdjustmentsHorizontalIcon, access: ['ADMINISTRATOR','MODERATOR']},
     {name: "Edytuj profil", href: "/dashboard/profile", icon:Cog8ToothIcon, access: [] },
 ]
 

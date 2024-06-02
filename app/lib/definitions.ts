@@ -12,6 +12,16 @@ export type User = {
     registered?: boolean,
 };
 
+export type News = {
+    id: string,
+    user_id: string,
+    title: string,
+    text: string,
+    date: string,
+    modification_date: string,
+    modified?: boolean,
+}
+
 export type SessionData = {
     user?: User;
     isLoggedIn: boolean;
