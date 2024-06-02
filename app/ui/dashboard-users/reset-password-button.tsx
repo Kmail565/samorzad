@@ -10,6 +10,7 @@ export default function ResetPasswordButton({user}: { user: User })
     const [show,setShow] = useState(false);
     const [password, setPassword] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const [isConfirm, setConfirm] = useState(false);
 
     const generatePassword = () =>
     {
@@ -21,6 +22,7 @@ export default function ResetPasswordButton({user}: { user: User })
             newPassword += charset.charAt(Math.floor(Math.random() * charset.length));
         }
         setPassword(newPassword);
+        setConfirm(true);
     }
 
     const copyToClipboard = () =>
@@ -40,7 +42,12 @@ export default function ResetPasswordButton({user}: { user: User })
         setShow(false);
     }
 
-    const handleClose = () => setShow(false);
+    const handleClose = () =>
+    {
+        setPassword("");
+        setConfirm(false);
+        setShow(false);
+    }
     const handleShow = () => setShow(true);
     return(
         <>
@@ -54,26 +61,22 @@ export default function ResetPasswordButton({user}: { user: User })
                         <button className={styles.gen_button} onClick={generatePassword}>
                             Generuj nowe hasło
                         </button>
-                        {password &&
-                            <>
-                                <div>
-                                    {/*<label>Generated Password:</label>*/}
-                                    <input className={styles.gen_pass}
-                                           type="text" value={password} readOnly
-                                    />
-                                    <button className={styles.copy_button} onClick={copyToClipboard}>
-                                        Copy
-                                    </button>
-                                    {successMessage && (
-                                        <p>{successMessage}</p>
-                                    )}
-                                </div>
-                                <button className={styles.close_button} onClick={handleClose}>Anuluj</button>
-                                <button className={styles.con_button} onClick={resetPasswordAction}>
-                                    Confirm Password
-                                </button>
-                            </>
-                        }
+                        <div>
+                            {/*<label>Generated Password:</label>*/}
+                            <input className={styles.gen_pass}
+                                   type="text" value={password} readOnly
+                            />
+                            <button disabled={!isConfirm} className={styles.copy_button} onClick={copyToClipboard}>
+                                Skopiuj
+                            </button>
+                            {successMessage && (
+                                <p>{successMessage}</p>
+                            )}
+                        </div>
+                        <button className={styles.close_button} onClick={handleClose}>Anuluj</button>
+                        <button disabled={!isConfirm} className={styles.con_button} onClick={resetPasswordAction}>
+                            Potwierdź hasło
+                        </button>
                     </div>
                 </div>
             </Modal>
