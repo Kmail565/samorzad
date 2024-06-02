@@ -5,7 +5,7 @@ import {AccordionBody, AccordionHeader, AccordionItem} from "react-bootstrap";
 export default function Home() {
     return (
         <div className={styles.acc}>
-            <h1 className={styles.title}>Strona główna</h1>
+            <div className={styles.title}><h1>Strona główna</h1></div>
             <Accordion defaultActiveKey="0">
                 <AccordionItem eventKey="0">
                     <AccordionHeader>Accordion Item #1</AccordionHeader>

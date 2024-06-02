@@ -22,7 +22,7 @@ export default function CreateForm()
                         <option value='' disabled>Wybierz uprawnienia</option>
                         <option>MODERATOR</option>
                     </select>
-                    <button className={styles.button}>Register</button>
+                    <button className={styles.button}>Zarejestruj</button>
                     {state?.error &&
                         <p>
                             {state.error}

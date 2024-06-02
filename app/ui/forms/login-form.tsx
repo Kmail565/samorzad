@@ -33,10 +33,10 @@ export default function LoginForm()
                             }
                         </div>
                         <div className={styles.forgot_pass}>
-                            <a href={"url"}>Forgotten password? Click here to reset.</a>
+                            <a href={"url"}>Zapomniałeś hasła? Zresetuj je tutaj.</a>
                         </div>
                         <button className={styles.button}>
-                            Log in
+                            Zaloguj się
                         </button>
                     </div>
 
