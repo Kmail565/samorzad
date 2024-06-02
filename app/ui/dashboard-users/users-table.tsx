@@ -9,20 +9,24 @@ export default async function UsersTable()
 {
     const users = await fetchUsers();
     return(
-        <div>
-            <div className={styles.child}>
-                <Table striped bordered hover className={styles.table}>
-                    <thead>
-                    <tr>
-                        {/*<th>#</th>*/}
-                        <th>Imię</th>
-                        <th>Nazwisko</th>
-                        <th>Uprawnienia</th>
-                        <th>email</th>
-                        <th>Edycja</th>
-                    </tr>
-                    </thead>
-                    {users.map((user) => (
+        <div className={styles.main_table}>
+            <div className={styles.button_wrapper}>
+                <Link href={"/dashboard/users/create"}>
+                    <button className={styles.button3}>Utwórz nowe konto</button>
+                </Link>
+            </div>
+            <Table striped bordered hover className={styles.table}>
+                <thead>
+                <tr>
+                    {/*<th>#</th>*/}
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Uprawnienia</th>
+                    <th>email</th>
+                    <th>Edycja</th>
+                </tr>
+                </thead>
+                {users.map((user) => (
 
                     <tbody key={user.id}>
 
@@ -43,9 +47,8 @@ export default async function UsersTable()
                     }
 
                     </tbody>
-                    ))}
-                </Table>
-            </div>
+                ))}
+            </Table>
         </div>
     );
 }

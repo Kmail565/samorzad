@@ -1,10 +1,29 @@
 @import "dashboard/variables";
 
+.main_table{
+    text-align: center;
+    width: 100%;
+    max-width: 1380px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 5px;
+    border: none;
+
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .table{
     text-align: left;
-    margin-top: 30px;
-    width: 1380px;
-    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.button_wrapper{
+    width: 100%;
 }
 
 .button{
@@ -29,10 +48,9 @@
 }
 
 .button3{
-    margin-bottom: 20px;
-    margin-right: 12px;
 
     float: right;
+
     height: 40px;
     width: 200px;
     color: white;
@@ -87,10 +105,12 @@
 
 .child{
     text-align: center;
-    //margin-left: ($sidebar-width)/2;
     background: white;
-    width: 1400px;
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     border-radius: 5px;
     border: none;
