@@ -26,31 +26,29 @@ export default async function UsersTable()
                     </thead>
                     {users.map((user) => (
 
-                        <tbody key={user.id}>
+                    <tbody key={user.id}>
 
 
-                        {user.registered ?
-                            <tr>
-                                <td>{user.name}</td>
-                                <td>{user.surname}</td>
-                                <td>{user.permission}</td>
-                                <td className={styles.email}>{user.email}</td>
-                                <td className={styles.edition}><EditButton user={user}/></td>
-                            </tr> :
-                            <tr>
-                                <td colSpan={2}>Niezarejestrowany</td>
-                                <td>{user.permission}</td>
-                                <td>{user.email} <ResendButton user={user}/></td>
-                                <td className={styles.edition}><EditButton user={user}/></td>
-                            </tr>
-                        }
+                    {user.registered ?
+                        <tr>
+                            <td>{user.name}</td>
+                            <td>{user.surname}</td>
+                            <td>{user.permission}</td>
+                            <td className={styles.email}>{user.email}</td>
+                            <td className={styles.edition}><EditButton user={user}/></td>
+                        </tr> :
+                        <tr>
+                            <td colSpan={2}>Niezarejestrowany</td>
+                            <td>{user.permission}</td>
+                            <td>{user.email} <ResendButton user={user}/></td>
+                            <td className={styles.edition}><EditButton user={user}/></td>
+                        </tr>
+                    }
 
-                        </tbody>
+                    </tbody>
 
-                    ))}
-                </Table>
-            </div>
-        </div>
+                ))}
+            </Table>
     );
 }
 

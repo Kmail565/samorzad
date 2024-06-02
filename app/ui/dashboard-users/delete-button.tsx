@@ -1,28 +1,33 @@
 'use client'
 import {User} from "@/app/lib/definitions";
-import {useFormState} from "react-dom";
+import {useState} from "react";
+import {Modal} from "react-bootstrap";
 import {deleteUser} from "@/app/lib/edit";
 import styles from "@/app/styles/edit-user-form.module.css";
 
 export default function DeleteButton({user}: { user: User })
 {
-    const [state, formAction] = useFormState<any, FormData>(deleteUser, undefined);
+    const [show,setShow] = useState(false);
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return(
-        <form action={formAction}>
-            <input
-                type="hidden"
-                name="id"
-                value={user.id}
-            />
-            <button className={styles.button2}>
+            <button className={styles.button2} onClick={handleShow}>
                 Usuń konto
             </button>
-            {state?.error &&
-                <p>
-                    {state.error}
-                </p>
-            }
-        </form>
+            <Modal show={show} onHide={handleShow}>
+                <div>
+                    <button onClick={handleClose}>Close</button>
+                    <p>Are you sure you want to delete {user.email}&#39;s account?</p>
+                    <div>
+                        <form action={deleteUser}>
+                            <input type="hidden" name="id" value={user.id}/>
+                            <button onClick={handleClose}>Confirm</button>
+                        </form>
+                        <button onClick={handleClose}>Cancel</button>
+                    </div>
+                </div>
+            </Modal>
+        </>
     )
 }
