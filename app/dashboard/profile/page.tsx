@@ -1,11 +1,26 @@
-import EditForm from "../../ui/forms/edit-profile-form";
+import {getSession} from "@/app/lib/actions";
+import EditNamesForm from "@/app/ui/forms/edit-names-form";
+import EditPasswordsForm from "../../ui/forms/edit-passwords-form";
+import styles from "@/app/styles/dashboard/profile/edit-profile.module.scss"
 
-export default function Profile()
+export default async function Profile()
 {
-    return(
-        <>
-            <h1>Edit profile</h1>
-            <EditForm/>
-        </>
+    const session = await getSession();
+    if(!session.user) return <></>;
+
+    return (
+            <div className={styles.background}>
+                <div className={styles.main}>
+                    <div className={styles.title}>
+                        <h1>Edytuj Profil</h1>
+                    </div>
+                    <div className={styles.form_names}>
+                        <EditNamesForm user={session.user}/>
+                    </div>
+                    <div className={styles.form_passwords}>
+                        <EditPasswordsForm user={session.user}/>
+                    </div>
+                </div>
+            </div>
     )
 }

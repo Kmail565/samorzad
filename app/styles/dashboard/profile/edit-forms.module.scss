@@ -1,0 +1,148 @@
+@import "../variables";
+
+$disabled-background: #f1f1f1;
+$disabled-color: #acacac;
+$disabled-border: #e1e1e1;
+
+$enabled-background: #fbfbfb;
+$enabled-color: #272727;
+$enabled-border: #f0f0f0;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  color: #272727;
+  //align-items: center;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputs div{
+  width: 100%;
+  margin-bottom: 9px;
+}
+
+.inputs p {
+  margin: 0;
+
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.inputs input{
+  background: $enabled-background;
+  width: 100%;
+  height: 50px;
+
+  border-style: solid;
+  border-color: $enabled-border;
+  border-radius: 15px;
+
+  padding-left: 16px;
+
+  font-size: 18px;
+  font-weight: 400;
+
+  transition: 150ms;
+}
+
+.inputs input:disabled{
+  background: $disabled-background;
+  color: $disabled-color;
+  font-size: 18px;
+  font-weight: 400;
+
+  border-color: $disabled-border;
+}
+
+.inputs input:disabled::placeholder{
+  background: $disabled-background;
+  color: $disabled-color;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+#inputs_focus input:focus{
+  background: $enabled-background;
+  outline: none !important;
+  border-color: $enabled-color;
+}
+
+.inputs input:enabled:hover {
+  background: #f0f0f0;
+  border-color: #dddddd;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons button{
+  background: $enabled-background;
+  width: 150px;
+  height: 50px;
+  margin-top: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  border-style: solid;
+  border-color: $enabled-border;
+  border-radius: 15px;
+
+  transition: 200ms;
+}
+
+.buttons button:disabled {
+  background: $disabled-background;
+  border-color: $disabled-border;
+}
+
+.buttons p{
+  margin: 0 15px 0 5px;
+}
+
+.icon{
+  height: 22px;
+}
+
+.edit_button:enabled:hover{
+  background: #ececec;
+  border-color: #dcdcdc;
+}
+
+#edit_button_active:enabled:active{
+  background: #d5d5d5;
+  border-color: #bfbfbf;
+}
+
+.save_button:enabled:hover{
+  background: #effaef;
+  border-color: #d7edd7;
+  color: #35a535;
+}
+
+#save_button_active:enabled:active{
+  background: #d0ead0;
+  border-color: #bfdfbf;
+  color: #35a535;
+}
+
+.error{
+  margin-top: 5px;
+  margin-bottom: 0;
+
+  color: #ef0909;
+  font-weight: 700;
+}
+
+

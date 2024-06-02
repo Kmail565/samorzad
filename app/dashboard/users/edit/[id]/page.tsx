@@ -2,6 +2,7 @@ import {redirect} from "next/navigation";
 import {checkId, getUser} from "@/app/lib/edit";
 import EditForm from "@/app/ui/dashboard-users/edit-user-form";
 import DeleteButton from "@/app/ui/dashboard-users/delete-button";
+import ResetPasswordButton from "@/app/ui/dashboard-users/reset-password-button";
 
 type Props = {
     params: {
@@ -20,6 +21,7 @@ export default async function Edit({params} : Props)
             <h1>Edit User</h1>
             <EditForm user={user} />
             <DeleteButton user={user}/>
+            <ResetPasswordButton user={user}/>
         </>
     )
 }

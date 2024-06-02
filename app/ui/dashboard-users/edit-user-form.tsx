@@ -1,5 +1,5 @@
 'use client'
-import {edit, getUser} from "@/app/lib/edit";
+import {editUser} from "@/app/lib/edit";
 import {useFormState} from "react-dom";
 import {User} from "@/app/lib/definitions";
 
@@ -9,14 +9,10 @@ type Props = {
 
 export default function EditForm({user} : Props)
 {
-    const [state, formAction] = useFormState<any, FormData>(edit, undefined);
+    const [state, formAction] = useFormState<any, FormData>(editUser, undefined);
     return (
         <form action={formAction}>
-            <input
-                type="hidden"
-                name="id"
-                value={user.id}
-            />
+            <input type="hidden" name="id" value={user.id}/>
             {user.registered &&
                 <>
                     <input

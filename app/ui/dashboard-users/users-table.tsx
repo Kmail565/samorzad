@@ -9,48 +9,42 @@ export default async function UsersTable()
 {
     const users = await fetchUsers();
     return(
-        <div>
-            <div className={styles.child}>
-                <h1 className={styles.h1}>Zarządzanie kontami</h1>
-                <Link href={"/dashboard/users/create"}><button className={styles.button3}>Create new user account</button></Link>
-                <Table striped bordered hover className={styles.table}>
-                    <thead>
-                    <tr>
-                        {/*<th>#</th>*/}
-                        <th>Imię</th>
-                        <th>Nazwisko</th>
-                        <th>Uprawnienia</th>
-                        <th>email</th>
-                        <th>Edycja</th>
-                    </tr>
-                    </thead>
-                    {users.map((user) => (
+            <Table striped bordered hover className={styles.table}>
+                <thead>
+                <tr>
+                    {/*<th>#</th>*/}
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Uprawnienia</th>
+                    <th>email</th>
+                    <th>Edycja</th>
+                </tr>
+                </thead>
+                {users.map((user) => (
 
-                        <tbody key={user.id}>
+                    <tbody key={user.id}>
 
 
-                        {user.registered ?
-                            <tr>
-                                <td>{user.name}</td>
-                                <td>{user.surname}</td>
-                                <td>{user.permission}</td>
-                                <td className={styles.email}>{user.email}</td>
-                                <td className={styles.edition}><EditButton user={user}/></td>
-                            </tr> :
-                            <tr>
-                                <td colSpan={2}>Niezarejestrowany</td>
-                                <td>{user.permission}</td>
-                                <td>{user.email} <ResendButton user={user}/></td>
-                                <td className={styles.edition}><EditButton user={user}/></td>
-                            </tr>
-                        }
+                    {user.registered ?
+                        <tr>
+                            <td>{user.name}</td>
+                            <td>{user.surname}</td>
+                            <td>{user.permission}</td>
+                            <td className={styles.email}>{user.email}</td>
+                            <td className={styles.edition}><EditButton user={user}/></td>
+                        </tr> :
+                        <tr>
+                            <td colSpan={2}>Niezarejestrowany</td>
+                            <td>{user.permission}</td>
+                            <td>{user.email} <ResendButton user={user}/></td>
+                            <td className={styles.edition}><EditButton user={user}/></td>
+                        </tr>
+                    }
 
-                        </tbody>
+                    </tbody>
 
-                    ))}
-                </Table>
-            </div>
-        </div>
+                ))}
+            </Table>
     );
 }
 
