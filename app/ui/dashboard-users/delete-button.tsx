@@ -12,6 +12,7 @@ export default function DeleteButton({user}: { user: User })
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return(
+        <>
             <button className={styles.button2} onClick={handleShow}>
                 Usuń konto
             </button>
