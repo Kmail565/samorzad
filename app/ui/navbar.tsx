@@ -10,7 +10,7 @@ export default function Navbar2() {
             <Container>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <button className={styles.tabs}><Nav.Link href="/">Strona główna</Nav.Link></button>
-                <button className={styles.tabs}><Nav.Link href="/blog">Aktualności</Nav.Link></button>
+                <button className={styles.tabs}><Nav.Link href="/news">Aktualności</Nav.Link></button>
                 <button className={styles.tabs}><Nav.Link href="/sports">Sporty</Nav.Link></button>
                 <button className={styles.tabs}><Nav.Link href="/events">Wydarzenia</Nav.Link></button>
                 <button className={styles.tabs}><Nav.Link href="/about">About</Nav.Link></button>
