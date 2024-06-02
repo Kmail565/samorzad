@@ -13,6 +13,7 @@ export default async function Profile()
                 <div className={styles.main}>
                     <div className={styles.title}>
                         <h1>Edytuj Profil</h1>
+                        <p>- {session.user.email} -</p>
                     </div>
                     <div className={styles.form_names}>
                         <EditNamesForm user={session.user}/>

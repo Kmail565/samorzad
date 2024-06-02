@@ -132,7 +132,11 @@
 .logout button:hover{
   background: #283240;
   color: #ff3737;
-  font-size: 18px;
+}
+
+.logout button:active{
+  background: #ffffff;
+  color: #ef0909;
 }
 
 .logout_icon{
