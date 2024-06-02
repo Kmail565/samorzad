@@ -3,6 +3,7 @@ import {User} from "@/app/lib/definitions";
 import {useState} from "react";
 import {Modal} from "react-bootstrap";
 import {deleteUser} from "@/app/lib/edit";
+import styles from "@/app/styles/edit-user-form.module.css";
 
 export default function DeleteButton({user}: { user: User })
 {
@@ -11,9 +12,8 @@ export default function DeleteButton({user}: { user: User })
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return(
-        <>
-            <button onClick={handleShow}>
-                Delete Account
+            <button className={styles.button2} onClick={handleShow}>
+                Usuń konto
             </button>
             <Modal show={show} onHide={handleShow}>
                 <div>
