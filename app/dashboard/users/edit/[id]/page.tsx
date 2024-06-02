@@ -21,10 +21,10 @@ export default async function Edit({params} : Props)
         <div>
             <div className={styles.parent}></div>
             <div className={styles.child3}>
-                <div><h1 className={styles.h1}>Edit User</h1></div>
+                <h1 className={styles.h1}>Edit User</h1>
                 <EditForm user={user}/>
-                <div className={styles.delete_button}><DeleteButton user={user}/></div>
-                <ResetPasswordButton user={user}/>
+                <div><DeleteButton user={user}/></div>
+                <div><ResetPasswordButton user={user}/></div>
             </div>
         </div>
     )

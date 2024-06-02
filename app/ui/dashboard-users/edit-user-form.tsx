@@ -2,7 +2,7 @@
 import {editUser} from "@/app/lib/edit";
 import {useFormState} from "react-dom";
 import {User} from "@/app/lib/definitions";
-import styles from "@/app/styles/edit-user-form.module.css";
+import styles from "@/app/styles/edit-user-form.module.scss";
 
 type Props = {
     user: User
