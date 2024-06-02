@@ -11,8 +11,6 @@ export default async function UsersTable()
     return(
         <div>
             <div className={styles.child}>
-                <h1 className={styles.h1}>Zarządzanie kontami</h1>
-                <Link href={"/dashboard/users/create"}><button className={styles.button3}>Utwórz nowe konto</button></Link>
                 <Table striped bordered hover className={styles.table}>
                     <thead>
                     <tr>
