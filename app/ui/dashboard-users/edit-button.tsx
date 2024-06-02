@@ -10,7 +10,7 @@ export default async function EditButton({user}: { user: User })
     return(
         <form action={"/dashboard/users/edit/" + user.id}>
             <button className={styles.button}>
-                Edit user
+                Edytuj konto
             </button>
         </form>
     )

@@ -47,7 +47,7 @@ export default function EditForm({user} : Props)
                 <option>MODERATOR</option>
             </select>
             <button className={styles.button}>
-                Save changes
+                Zapisz zmiany
             </button>
             {state?.error &&
                 <p>
