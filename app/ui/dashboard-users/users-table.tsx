@@ -28,7 +28,6 @@ export default async function UsersTable()
 
                     <tbody key={user.id}>
 
-
                     {user.registered ?
                         <tr>
                             <td>{user.name}</td>
@@ -46,9 +45,10 @@ export default async function UsersTable()
                     }
 
                     </tbody>
-
-                ))}
-            </Table>
+                    ))}
+                </Table>
+            </div>
+        </div>
     );
 }
 
