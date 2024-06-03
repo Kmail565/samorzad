@@ -15,7 +15,6 @@ export default async function Edit({params} : Props)
 {
     const user = await getUser(params.id);
     const correctId = await checkId(params.id);
-    // console.log(correctId);
     if(!correctId) redirect("/dashboard/users/edit");
     return(
         <div>

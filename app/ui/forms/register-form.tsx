@@ -13,6 +13,9 @@ export default function RegisterForm({params} : Props)
 {
     const [state, formAction] = useFormState<any,FormData>(register,undefined);
     const pending = useFormStatus().pending;
+
+
+
     return (
         <div>
             <div className={styles.bg}></div>
