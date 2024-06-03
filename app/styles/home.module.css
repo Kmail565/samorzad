@@ -7,6 +7,37 @@
     transform: translate(-50%,-50%);
 }
 
+.title2{
+    margin-top: 145px;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.greetings{
+
+}
+
+.news{
+    margin-top: 245px;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.news2{
+    margin-top: 285px;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
 .acc{
     margin-top: 160px;
     width: 100%;
