@@ -1,5 +1,5 @@
 'use client';
-import {useFormState, useFormStatus} from 'react-dom';
+import {useFormState} from 'react-dom';
 import {register} from "../../lib/registration";
 import styles from "@/app/styles/login.module.css";
 
@@ -12,9 +12,6 @@ type Props = {
 export default function RegisterForm({params} : Props)
 {
     const [state, formAction] = useFormState<any,FormData>(register,undefined);
-    const pending = useFormStatus().pending;
-
-
 
     return (
         <div>
@@ -51,7 +48,7 @@ export default function RegisterForm({params} : Props)
                            minLength={6}
                            placeholder="Powtórz swoje hasło"
                     />
-                    <button aria-disabled={pending}  className={styles.button2}>
+                    <button className={styles.button2}>
                         Zarejestruj się
                     </button>
                     {state?.error &&
