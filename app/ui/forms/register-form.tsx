@@ -52,7 +52,7 @@ export default function RegisterForm({params} : Props)
                            placeholder="Powtórz swoje hasło"
                     />
                     <button aria-disabled={pending}  className={styles.button2}>
-                        Register
+                        Zarejestruj się
                     </button>
                     {state?.error &&
                         <p id={styles.error}>

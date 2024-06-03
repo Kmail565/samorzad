@@ -1,0 +1,41 @@
+.child{
+  margin-top: 200px;
+  background: yellow;
+  width: 634px;
+  height: 404px;
+  text-align: center;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 5px;
+  border: none;
+}
+
+.acc{
+  margin-top: 510px;
+  width: 100%;
+  max-width: 1380px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.title{
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  width: 800px;
+  text-align: center;
+}
+
+.content{
+    font-size: 25px;
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    width: 800px;
+    height: 450px;
+}

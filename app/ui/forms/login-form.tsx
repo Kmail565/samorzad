@@ -32,9 +32,7 @@ export default function LoginForm()
                                 </p>
                             }
                         </div>
-                        <div className={styles.forgot_pass}>
-                            <a href={"url"}>Zapomniałeś hasła? Zresetuj je tutaj.</a>
-                        </div>
+
                         <button className={styles.button}>
                             Zaloguj się
                         </button>
