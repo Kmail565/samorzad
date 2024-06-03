@@ -45,7 +45,7 @@ export async function sendEmail(email: string) {
 
     sgMail.send(msg)
     .then(() => {
-        console.log('Email sent')
+        // console.log('Email sent')
     })
     .catch((error: any) => {
         console.error(error);
@@ -83,9 +83,7 @@ export async function createAccount(prevState: {error: undefined | string}, form
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-    const user = await emailGetUser(email);
-
-    sendEmail(email);
+    await sendEmail(email);
 
     redirect("/dashboard/users");
 }
@@ -147,6 +145,5 @@ export async function register(prevState: {error: undefined | string}, formData:
     } catch (error) {
         return { error: 'Database Error: Failed to Register' };
     }
-    logout();
-    redirect("/login");
+    await logout();
 }
