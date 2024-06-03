@@ -21,8 +21,8 @@ export default function NewsDelete({news} : Props)
                 Usuń post
             </button>
             <Modal show={show} onHide={handleShow}>
-                <div className={styles.child}>
-                    <h2 className={styles.h1}>Czy jesteś pewien że chcesz usunąć ten post?</h2>
+                <div className={styles.child2}>
+                    <h2 className={styles.h2}>Czy jesteś pewien że chcesz usunąć ten post?</h2>
                     <div>
                         <form action={deleteNews}>
                             <input type="hidden" name="id" value={news.id}/>
