@@ -6,7 +6,6 @@ import {redirect} from "next/navigation";
 import bcrypt from "bcrypt";
 import {logout} from "./login";
 import {unstable_noStore} from "next/cache";
-import sgMail from "@sendgrid/mail";
 
 const defaultUser: {name:string, surname: string, password: string, image_url: string} = {
     name: "BRAK",
@@ -18,7 +17,7 @@ const defaultUser: {name:string, surname: string, password: string, image_url: s
 const msgTemplate = {
     from: 'strona.staszic.xiv.samorzad@gmail.com',
     subject: 'Account registration',
-    text: 'Account registration link: http://localhost:3000/register/'
+    text: 'Account registration link: https://samorzad.vercel.app/register/'
 }
 
 async function emailGetUser(email: string): Promise<User | undefined> {
@@ -86,13 +85,6 @@ export async function createAccount(prevState: {error: undefined | string}, form
 
     const user = await emailGetUser(email);
 
-    const msg = {
-        from: msgTemplate.from,
-        to: email,
-        subject: msgTemplate.subject,
-        text: msgTemplate.text + user?.id,
-    }
-
     sendEmail(email);
 
     redirect("/dashboard/users");
@@ -116,8 +108,8 @@ export async function checkId(id:string): Promise<Boolean>
     if(!parsedId.success) return false;
     const user = await idGetUser(parsedId.data);
     if(!user) return false;
-    if(user.registered) return false;
-    return true;
+    return !user.registered;
+
 }
 
 export async function register(prevState: {error: undefined | string}, formData: FormData)

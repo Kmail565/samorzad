@@ -1,4 +1,4 @@
-import {fetchUsers} from "../../lib/data";
+import {fetchUsers, formatDateToLocal} from "../../lib/data";
 import ResendButton from "./resend-button";
 import EditButton from "./edit-button";
 import Table from 'react-bootstrap/Table';
@@ -18,28 +18,32 @@ export default async function UsersTable()
             <Table striped bordered hover className={styles.table}>
                 <thead>
                 <tr>
-                    {/*<th>#</th>*/}
+                    <th>#</th>
                     <th>Imię</th>
                     <th>Nazwisko</th>
+                    <th>Data</th>
                     <th>Uprawnienia</th>
-                    <th>email</th>
+                    <th>Email</th>
                     <th>Edycja</th>
                 </tr>
                 </thead>
-                {users.map((user) => (
+                {users.map((user, index) => (
 
                     <tbody key={user.id}>
-
                     {user.registered ?
                         <tr>
+                            <td>{index + 1}</td>
                             <td>{user.name}</td>
                             <td>{user.surname}</td>
+                            <td> {formatDateToLocal(user.date)} </td>
                             <td>{user.permission}</td>
                             <td className={styles.email}>{user.email}</td>
                             <td className={styles.edition}><EditButton user={user}/></td>
                         </tr> :
                         <tr>
+                            <td>{index + 1}</td>
                             <td colSpan={2}>Niezarejestrowany</td>
+                            <td> {formatDateToLocal(user.date)} </td>
                             <td>{user.permission}</td>
                             <td>{user.email} <ResendButton user={user}/></td>
                             <td className={styles.edition}><EditButton user={user}/></td>

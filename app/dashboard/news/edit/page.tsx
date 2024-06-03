@@ -6,7 +6,7 @@ export default async function EditPage()
         <>
             <h1>Edytuj użytkownika</h1>
             <h6>Zły link</h6>
-            <Link href={"/dashboard/users"}> Return </Link>
+            <Link href={"/dashboard/news"}> Return </Link>
         </>
     )
 }

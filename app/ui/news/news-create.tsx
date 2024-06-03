@@ -18,7 +18,7 @@ export default function NewsCreate() {
                 placeholder="Treść"
             />
             <button className={styles.button}>
-                Submit
+                Wyślij
             </button>
             {state?.error &&
                 <p>

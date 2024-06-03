@@ -8,8 +8,35 @@
     padding-right: 20px;
 }
 
-.title{
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.title{
+    flex: 1;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title h2{
+    flex: 1;
+    /*max-width: 100%;*/
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.title p{
+    align-self: flex-end;
+    margin-right: 15px;
+}
+
+.edit_news_button{
+    padding: 10px;
 }
 
 .content{
