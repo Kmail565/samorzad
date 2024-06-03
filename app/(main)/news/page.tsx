@@ -6,7 +6,7 @@ export default function News()
     return(
         <div>
             <div className={styles.acc}>
-                <h1 className={styles.title}>Aktualności</h1>;
+                <h1 className={styles.title}>Aktualności</h1>
                 <NewsTable/>
             </div>
         </div>
