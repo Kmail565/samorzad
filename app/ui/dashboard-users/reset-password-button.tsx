@@ -33,7 +33,7 @@ export default function ResetPasswordButton({user}: { user: User })
         copiedPassword.select();
         document.execCommand("copy");
         document.body.removeChild(copiedPassword);
-        setSuccessMessage("Password copied to clipboard!");
+        // setSuccessMessage("Password copied to clipboard!");
     };
 
     const resetPasswordAction = () =>
