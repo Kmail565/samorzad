@@ -1,21 +1,23 @@
 'use client'
 import {useFormState} from "react-dom";
 import {createNews} from "@/app/lib/news";
+import styles from "@/app/styles/news-create.module.css";
 
 export default function NewsCreate() {
     const [state, formAction] = useFormState<any, FormData>(createNews, undefined);
 
     return(
-        <form action={formAction}>
-            <input
+        <form action={formAction} className={styles.child}>
+            <input className={styles.title}
                 type="text"
                 name="title"
-                placeholder="Title"
+                placeholder="Tytuł"
             />
-            <textarea
+            <textarea className={styles.content}
                 name="text"
+                placeholder="Treść"
             />
-            <button>
+            <button className={styles.button}>
                 Submit
             </button>
             {state?.error &&
