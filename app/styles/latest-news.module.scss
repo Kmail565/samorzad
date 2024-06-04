@@ -13,29 +13,41 @@
 }
 
 .acc{
-  margin-top: 510px;
-  width: 100%;
-  max-width: 1380px;
-  margin-left:auto;
-  margin-right:auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  //width: 100%;
+  //max-width: 1380px;
+
 }
 
 .title{
+  background: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+
   border-style: solid;
-  border-width: 2px;
-  border-radius: 5px;
-  width: 800px;
+  border-color: #151f2b;
+  border-width: 3px;
+  border-radius: 15px;
+  width: max-content;
+  max-width: 1100px;
   text-align: center;
 }
 
 .content{
+    background: white;
+    padding: 20px;
+
     font-size: 25px;
     margin-top: 10px;
     border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    width: 800px;
-    height: 450px;
+    border-color: #151f2b;
+    border-width: 3px;
+    border-radius: 20px;
+    width: 1100px;
+    height: max-content;
 }
