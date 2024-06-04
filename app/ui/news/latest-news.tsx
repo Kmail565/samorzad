@@ -5,10 +5,8 @@ export default async function LatestNews() {
     const news = await fetchLatestNews();
     return(
         <div className={styles.acc}>
-            <div>
-                <h2 className={styles.title}>{news.title}</h2>
-                <p className={styles.content}>{news.text}</p>
-            </div>
+            <h2 className={styles.title}>- {news.title} -</h2>
+            <p className={styles.content}>{news.text}</p>
         </div>
     )
 }

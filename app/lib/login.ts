@@ -27,8 +27,8 @@ export async function login(prevState: {error: undefined | string}, formData: Fo
         const email = parsedEmail.data as string;
         const password = parsedPassword.data as string;
         const user = await getUser(email);
-        if (!user) return {error: "Invalid email or password"};
-        if (!user.registered) return {error: "First complete registration"};
+        if (!user) return {error: "Błędny adres poczty elektronicznej bądź hasło"};
+        if (!user.registered) return {error: "Najpierw należy dokończyć rejestrację"};
 
         const passwordsMatch = await bcrypt.compare(password,user.password);
         if (passwordsMatch)
@@ -39,7 +39,7 @@ export async function login(prevState: {error: undefined | string}, formData: Fo
             redirect("/dashboard");
         }
     }
-    return {error: "Invalid email or password"};
+    return {error: "Błędny adres poczty elektronicznej bądź hasło"};
 }
 
 export async function logout()
